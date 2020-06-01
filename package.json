@@ -2,19 +2,22 @@
   "name": "carteira-digital-scrapper",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "dependencies": {
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^8.0.8",
     "moment": "^2.26.0",
     "node-cache": "^5.1.0",
-    "playwright": "^1.0.1"
+    "playwright": "^1.0.1",
+    "puppeteer": "^3.1.0",
+    "puppeteer-firefox": "^0.5.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js",
+    "build": "rm dist/bundle-0.1.zip && zip -vr dist/bundle-0.2.zip . -x \"*.zip\" -x \"node_modules/*\" -x \".git/*\"  \"*.png\" -x \"package-lock.json\" -x \"yarn.lock\""
   },
   "repository": {
     "type": "git",

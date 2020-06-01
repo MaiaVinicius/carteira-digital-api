@@ -1,10 +1,12 @@
-const Clear = require('./../Services/ClearService');
+const Clear = require('./Services/ClearService');
 
 exports.syncClear = (req, res) => {
   const params = req.body;
 
   return new Promise((resolve, reject) => {
-    Clear.get({
+    const clear = new Clear();
+
+    clear.get({
       headless: false,
       cached: params.cached ,
       credentials: params.credentials

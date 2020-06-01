@@ -2,6 +2,8 @@ const {webkit, chromium, firefox} = require('playwright');
 const utils = require('../utils');
 const PositionMounter = require('./../Mounters/PositionMounter');
 var moment = require('moment'); // require 
+const puppeteer = require('puppeteer');
+const pptrFirefox = require('puppeteer-firefox');
 
 class ClearService { 
 
@@ -14,19 +16,19 @@ class ClearService {
   // save
   
 
-  static scrap = async (params ) => {
+  async scrap (params ) {
     return new Promise(async (resolve, reject) => {
 
-      const browser = await firefox.launch({ headless: false });
-    const context = await browser.newContext();
-    const page = await context.newPage();
+      const browser = await pptrFirefox.launch({ product: 'firefox', headless: false , args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    // const context = await browser.newContext();
+    const page = await browser.newPage();
     
     await page.goto('https://www.clear.com.br/pit/signin?controller=SignIn&referrer=http%3a%2f%2fwww.clear.com.br%2fpit');
     // await page.screenshot({ path: `screenshot/example-${browserType}.png` });
 
 
-    await page.fill("#identificationNumber", params.credentials.user);
-    await page.fill("#password", params.credentials.password);
+    await page.$eval('#identificationNumber', (el, val) => el.value = val ,params.credentials.user);
+    await page.$eval('#password', (el, val) => el.value = val, params.credentials.password);
 
     await page.evaluate(async (params) => {
         $("#dob").val(params.credentials.birthdate);
@@ -34,7 +36,7 @@ class ClearService {
 
     // await utils.wait(1000)
     
-    await page.click('css=.bt_signin');
+    await page.click('.bt_signin');
 
     // await utils.wait(1000)
 
@@ -128,11 +130,11 @@ class ClearService {
     });
   }
 
-  static save = async (data, params) => {
+  async save (data, params) {
     return utils.cacheSet('Clear-' + params.credentials.user ,data);
   }
 
-  static translate = (_data) => {
+  translate (_data) {
 
     let positions = [];
 
@@ -181,11 +183,11 @@ class ClearService {
     return PositionMounter(data);
   }
 
-  static getCached = async (params) => {
+  async getCached (params) {
     return utils.cacheGet('Clear-' + params.credentials.user);
   }
 
-  static get = async (params) =>{
+  async get (params) {
     if(params.cached){
       const cachedData = await this.getCached(params);
 

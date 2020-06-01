@@ -3,27 +3,35 @@ const example = {
   positions: [
     {
       description: "Nome da conta",
-      totalAmount: 99.99,
+      total_amount: 99.99,
       quantity: 1,
-      unitPrice: 99.99,
-      amountCurrency: "BRL",
-      initialAmount: 0,
+      unit_price: 99.99,
+      amount_urrency: "BRL",
+      initial_amount: 0,
       averagePrice: 0,
       investment: {
         category: null,
-        subType: null
+        sub_type: null
       },
       external_id: 123,
       position_type: 1, //1- Conta corrente ; 2- Posicao
       bankDetails: {
         agency: '0001',
         account: '***812',
-        accountDigit: '6',
-        bankId: null
+        account_digit: '6',
+        bank_dd: null
       }
     }
   ],
-  movements: []
+  movements: [
+    {
+      movement_date: null,
+      description: null,
+      value: null,
+      balance: null,
+      code: null
+    }
+  ]
 }
 
 

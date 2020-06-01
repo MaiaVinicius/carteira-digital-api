@@ -14,7 +14,7 @@ class EasynvestService {
   // save
   
 
-  static scrap = async (params ) => {
+  async scrap (params ) {
     return new Promise(async (resolve, reject) => {
     
       const browser = await firefox.launch(
@@ -48,7 +48,12 @@ class EasynvestService {
       const jsonCustody = await responseCustody.json();
   
       utils.wait(500);
-      await page.click('css=.sc-bsbRJL');
+      try{
+        await page.click("css=.close-button");
+      }catch(e){
+
+      }
+      await page.goto("https://www.easynvest.com.br/acompanhar/conta");
       utils.wait(500);
 
       const [responseAccount] = await Promise.all([
@@ -59,8 +64,11 @@ class EasynvestService {
       const bankAccount = await responseAccount.json();
       // const bankAccount = {};
 
+      const movements = await this.scrapMovements(page);
+
       resolve({
         positions: jsonCustody,
+        movements: movements,
         bankAccount: bankAccount[0]
       });
       await browser.close();
@@ -68,20 +76,48 @@ class EasynvestService {
     });
   }
 
-  static save = async (data, params) => {
+  async save (data, params) {
     return utils.cacheSet('Easynvest-' + params.credentials.user ,data);
   }
 
-  static translate = (_data) => {
+  async scrapMovements (page) {
+    await page.goto("https://www.easynvest.com.br/configuracoes/relatorios/extrato");
+    await page.fill('//*[@id="account-statement"]/form/div[1]/div[2]/div/div[2]/div[1]/div/input', moment().subtract(90, "days").format("DD/MM/YYYY"))
+    await page.fill('//*[@id="account-statement"]/form/div[1]/div[3]/div/div[2]/div/div/input', moment().format("DD/MM/YYYY"))
+    
+    await page.click('//*[@id="account-statement"]/section/div[2]')
+    const [movementsNetwork] = await Promise.all([
+      page.waitForResponse('**/api/gringott/statements/*'),
+      page.click('//*[@id="account-statement"]/form/div[2]/button')
+    ]);
+
+    const result = await movementsNetwork.json();
+    return result.value.statements;
+  }
+
+  translate (_data) {
     let data = {
       positions: [],
       movements: [],
       update_at: moment().format("Y-MM-DD HH:mm:ss")
     };
 
+    for(var m in _data.movements){
+      const movement = _data.movements[m];
+
+      data.movements.push({
+        date: movement.movementDate,
+        description: movement.description,
+        value: movement.value,
+        balance: movement.balance,
+        code: movement.historyCode
+      })
+    }
+
+
     data.positions.push({
       description: "Easynvest - Conta Corrente",
-      total_amount: _data.easyBalance ? _data.easyBalance : 0,
+      total_amount: _data.positions.easyBalance ? _data.positions.easyBalance : 0,
       amount_currency: "BRL",
       position_type: 1, //1- Conta corrente ; 2- Posicao
       bank_details: {
@@ -102,15 +138,21 @@ class EasynvestService {
 
         description: position.nickName,
         total_amount: position.grossValue,
+        net_value: position.netValue,
+        maturity: position.mautiry,
+
+        is_grouped_position: position.status ? 0 : 1, //todo descobrir quais status existe (Pendente)
+
         quantity: position.quantity,
         unit_price: position.unitPrice,
         investment: {
           category: position.securityNameType,
-          sub_type: position.type
+          sub_type: position.type,
+          ir: position.ir,
         },
         initial_amount: position.investedCapital,
         amount_currency: "BRL",
-        external_id: position.custodyId,
+        external_id: position.hash,
         position_type: 2, //1- Conta corrente ; 2- Posicao
         bank_details: null
       })
@@ -119,11 +161,11 @@ class EasynvestService {
     return PositionMounter(data);
   }
 
-  static getCached = async (params) => {
+  async getCached (params) {
     return utils.cacheGet('Easynvest-' + params.credentials.user);
   }
 
-  static get = async (params) =>{
+  async get (params) {
     if(params.cached){
       const cachedData = await this.getCached(params);
 
