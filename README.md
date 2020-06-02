@@ -10,9 +10,8 @@ Utiliza a tecnologia [Puppeteer.js](https://github.com/puppeteer/puppeteer) para
 - `nodemon server.js` 
 
 ### Como utilizar
-Documentação dos métodos:
+[Clique aqui](https://documenter.getpostman.com/view/1148545/Szmh4HWm) para consultar a documentação dos métodos disponíveis.
 
-https://documenter.getpostman.com/view/1148545/Szmh4HWm
 
 > _Atenção: Para utilizar os métodos é necessário informar dados sensíveis como `senha readonly`. Sinta-se à vontade para explorar o código e constatar que estes dados não são armazenados em qualquer banco de dados._
 
