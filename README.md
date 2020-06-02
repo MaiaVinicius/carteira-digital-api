@@ -24,6 +24,11 @@ Utiliza a tecnologia [Puppeteer.js](https://github.com/puppeteer/puppeteer) para
 
 ### Plataformas integradas
 
+##### Dados bancários
+Através da integração com o Guia Bolso, é possível obter o saldo e extrato de suas contas correntes e cartões vinculados aos grandes bancos.
+
+##### Investimentos
+Estamos integrados com algumas das maiores corretoras brasileiras. 
 
 | Plataforma | Tesouro Direto      | Fundos inv.    | Renda Fixa     | Renda variável | Extrato | Ordens | Contas correntes |
 | -----------|:-------------------:| --------------:| --------------:| --------------:| -------:| ------:|-----------------:|
