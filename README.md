@@ -25,7 +25,7 @@ Utiliza a tecnologia [Puppeteer.js](https://github.com/puppeteer/puppeteer) para
 ### Plataformas integradas
 
 ##### Dados bancários
-Através da integração com o Guia Bolso, é possível obter o saldo e extrato de suas contas correntes e cartões vinculados aos grandes bancos.
+Através da integração com o Guia Bolso, é possível obter o saldo e extrato de suas contas correntes e cartões vinculados aos grandes bancos (Nubank, Inter, Itaú, Bradesco, Banco do Brasil etc.).
 
 ##### Investimentos
 Estamos integrados com algumas das maiores corretoras brasileiras. 
@@ -39,7 +39,6 @@ Estamos integrados com algumas das maiores corretoras brasileiras.
 | XP         |                     |                |                |                |        |         |                  |
 | Genial     |                     |                |                |                |        |         |                  |
 
-> A integração com o Guia Bolso contempla bancos como Nubank, Inter, Itaú, Bradesco, Banco do Brasil etc.
 
 ### Como contribuir
 Estamos em busca de apoiadores. Para contribuir, confira os [issues](https://github.com/MaiaVinicius/carteira-digital-api/issues) em aberto.
