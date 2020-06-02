@@ -5,8 +5,8 @@
 Utiliza a tecnologia [Puppeteer.js](https://github.com/puppeteer/puppeteer) para extrair seus dados bancários / investimentos.
 
 ##### Quais informações consigo obter
-- Seu saldo bancário em todas as suas contas bancárias
-- O histórico de transações do cartão de crédito
+- Seu saldo em todas as suas contas bancárias
+- O histórico de transações em seu cartão de crédito
 - Todas as transações financeiras de suas contas
 - Seus investimentos em corretoras
 - A valorização de seus ativos, como ações, FIIs, e Tesouro Direto
