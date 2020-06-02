@@ -39,6 +39,5 @@ Estamos integrados com algumas das maiores corretoras brasileiras.
 | XP         |                     |                |                |                |        |         |                  |
 | Genial     |                     |                |                |                |        |         |                  |
 
-
 ### Como contribuir
 Estamos em busca de apoiadores. Para contribuir, confira os [issues](https://github.com/MaiaVinicius/carteira-digital-api/issues) em aberto.
