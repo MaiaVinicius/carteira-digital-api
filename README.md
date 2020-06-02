@@ -14,7 +14,7 @@ Documentação dos métodos:
 
 https://documenter.getpostman.com/view/1148545/Szmh4HWm
 
-_Atenção: Sim, para utilizar os métodos é necessário informar dados sensíveis como `senha readonly`. Sinta-se à vontade para explorar o código e constatar que estes dados não são armazenados em qualquer banco de dados._
+> _Atenção: Para utilizar os métodos é necessário informar dados sensíveis como `senha readonly`. Sinta-se à vontade para explorar o código e constatar que estes dados não são armazenados em qualquer banco de dados._
 
 ### Plataformas integradas
 
@@ -28,6 +28,7 @@ _Atenção: Sim, para utilizar os métodos é necessário informar dados sensív
 | XP         |                     |                |                |                |        |         |                  |
 | Genial     |                     |                |                |                |        |         |                  |
 
+> A integração com o Guia Bolso contempla bancos como Nubank, Inter, Itaú, Bradesco, Banco do Brasil etc.
 
 ### Como contribuir
 Estamos em busca de apoiadores. Para contribuir, confira os [issues](https://github.com/MaiaVinicius/carteira-digital-api/issues) em aberto.
