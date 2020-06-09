@@ -15,8 +15,16 @@ router.post('/rico/position', async (ctx, next) => {
   return new Promise((resolve, reject) => {
     const rico = new Rico();
 
+
+    let options = params.options;
+    if(!options){
+      options = {
+        get_movements: true
+      }
+    }
+
     rico.get({
-      headless: false,
+      debug: options.debug,
       cached: params.cached ,
       credentials: params.credentials
     }).then((result)=>{
@@ -33,8 +41,16 @@ router.post('/clear/position', async (ctx, next) => {
   return new Promise((resolve, reject) => {
     const clear = new Clear();
 
+
+    let options = params.options;
+    if(!options){
+      options = {
+        get_movements: true
+      }
+    }
+
     clear.get({
-      headless: false,
+      debug: options.debug,
       cached: params.cached ,
       credentials: params.credentials
     }).then((result)=>{
@@ -53,8 +69,16 @@ router.post('/genial/position', async (ctx, next) => {
   return new Promise((resolve, reject) => {
     const genial = new Genial();
 
+
+    let options = params.options;
+    if(!options){
+      options = {
+        get_movements: true
+      }
+    }
+
     genial.get({
-      headless: false,
+      debug: options.debug,
       cached: params.cached ,
       credentials: params.credentials
     }).then((result)=>{
@@ -71,8 +95,16 @@ router.post('/easynvest/position', async (ctx, next) => {
   return new Promise((resolve, reject) => {
     const easy = new Easynvest();
 
+
+    let options = params.options;
+    if(!options){
+      options = {
+        get_movements: true
+      }
+    }
+
     easy.get({
-      headless: false,
+      debug: options.debug,
       cached: params.cached ,
       credentials: params.credentials
     }).then((result)=>{

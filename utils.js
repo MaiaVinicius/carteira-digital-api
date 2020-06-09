@@ -9,7 +9,7 @@ const cacheGet = (key) => {
   return myCache.get(key);
 }
 
-const cacheSet = (key, value, expires = 60 * 24 * 1000) => {
+const cacheSet = (key, value, expires = 60 * 10) => {
   return myCache.set(key, value, expires);
 }
 

@@ -19,7 +19,12 @@ class ClearService {
   async scrap (params ) {
     return new Promise(async (resolve, reject) => {
 
-      const browser = await pptrFirefox.launch({ product: 'firefox', headless: false , args: ['--no-sandbox', '--disable-setuid-sandbox']});
+      const browser = await pptrFirefox.launch({ 
+        devtools: params.debug ? true : false,
+        headless: params.debug ? false : true, 
+        product: 'firefox', 
+        args: ['--no-sandbox', '--disable-setuid-sandbox']}
+        );
     // const context = await browser.newContext();
     const page = await browser.newPage();
     

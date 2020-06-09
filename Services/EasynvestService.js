@@ -19,8 +19,9 @@ class EasynvestService {
     
       const browser = await firefox.launch(
         { 
-        headless: params.headless, 
-        // slowMo: 50 
+          devtools: params.debug,
+          headless: params.debug, 
+          // slowMo: 50 
         }
       );
       const context = await browser.newContext();

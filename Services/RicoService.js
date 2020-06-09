@@ -17,7 +17,10 @@ class RicoService {
   async scrap  (params) {
     return new Promise(async (resolve, reject) => {
 
-      const browser = await chromium.launch({ headless: false });
+      const browser = await chromium.launch({ 
+          devtools: params.debug ? true : false,
+          headless: params.debug ? false : true, 
+       });
       const context = await browser.newContext();
       const page = await context.newPage();
 
